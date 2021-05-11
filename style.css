@@ -1,0 +1,85 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #333;
+  color: white;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+#canvas {
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: none;
+}
+
+/*Game Menu Stuff*/
+#game-menu {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#menu-card {
+  background-color: white;
+  border-radius: 5px;
+  width: 500px;
+  height: 185px;
+  text-align: center;
+  color: black;
+}
+
+#menu-card h1 {
+  margin-top: 10px;
+  font-size: 40px;
+}
+
+#menu-card button {
+  color: white;
+  outline: none;
+  border: none;
+  background-color: #00ace6;
+  cursor: pointer;
+  padding: 10px 20%;
+  border-radius: 40px;
+  font-size: 40px;
+}
+
+#score-menu {
+  margin: 0 auto;
+  width: 600px;
+}
+
+#score-menu div {
+  display: inline-block;
+  text-align: center;
+}
+
+#score-menu div:nth-child(1) {
+  margin-left: 40px;
+}
+
+#score-menu div:nth-child(2) {
+  margin-left: 300px;
+}
+
+#score-menu div p {
+  font-size: 30px;
+  margin: 0;
+}
+
+#score-menu div span {
+  font-size: 20px;
+}

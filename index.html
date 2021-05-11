@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Circus Game</title>
+  </head>
+  <body>
+    <h1>Circus Game</h1>
+    <section id="score-menu">
+      <div>
+        <p>Score</p>
+        <span id="score-text">0</span>
+      </div>
+      <div>
+        <p>Lives</p>
+        <span id="lives-text">3</span>
+      </div>
+    </section>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    <section id="game-menu">
+      <div id="menu-card">
+        <h1>Circus</h1>
+        <button>Play</button>
+      </div>
+    </section>
+    <!--Script. Do not touch-->
+
+    <!--This file is just for loading the sprites & SFX-->
+    <script src="assets.js"></script>
+    <!--This file contains the global functions & variables-->
+    <script src="global.js"></script>
+    <!--This file contains our player and balloon classes-->
+    <script src="classes.js"></script>
+    <!--This file draws the canvases background-->
+    <script src="background.js"></script>
+    <!--This file is the game state functions (game over, respawn, score, etc.)-->
+    <script src="gameState.js"></script>
+    <!--This file is where we handle all of our collision detection-->
+    <script src="collisionDetection.js"></script>
+    <!--This file is the actual game logic-->
+    <script src="script.js"></script>
+  </body>
+</html>
