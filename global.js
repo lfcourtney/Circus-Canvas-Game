@@ -27,7 +27,7 @@ let animationId = null;
 canvas.addEventListener("mousemove", e => {
     mousePos = {
         x: e.clientX - canvas.offsetLeft,
-        y: e.clientY - canvas.offsetTop
+        y: (e.clientY - canvas.offsetTop) + scrollY
     }
     
 });

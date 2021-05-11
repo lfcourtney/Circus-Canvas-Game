@@ -30,9 +30,9 @@ loadSprites();
 
 //Temporarily alter the velocity on the first few jumps depending on what platform the player spawned on. This is to make the game feel better
 function sortVelocityStore(velocityYStore){
-    if(velocityYStore > -18 && p1Cord.y === 350 && numOfCollisions < 3){
+    if(p1Cord.y === 350 && numOfCollisions < 3){
         velocityYStore -= 1;
-    }else if(velocityYStore > -19 && p1Cord.y === 200 && velocityYStore < -18.55 && numOfCollisions < 2){
+    }else if(p1Cord.y === 200 && numOfCollisions < 2){
         velocityYStore += 1;
     }
     return -velocityYStore;
