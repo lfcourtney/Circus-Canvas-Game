@@ -67,6 +67,14 @@ function playerHitTopOfPlatform(person) {
 }
 }
 
+//Player can collide with platform again but only when cooldown period has finished.
+function resetPlatform() {
+    canSlowDownFromPlatform = false;
+    setTimeout(() => {
+        canSlowDownFromPlatform = true;
+    }, 1000);
+}
+
 
 //So that collision with balloons looks good
 function generatePlayerHitBox(person){

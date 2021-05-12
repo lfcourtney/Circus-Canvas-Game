@@ -36,11 +36,5 @@ function drawSeeSaw() {
     ctx.fill();
 }
 
-//Player can collide with platform again but only when cooldown period has finished.
-function resetPlatform() {
-    canSlowDownFromPlatform = false;
-    setTimeout(() => {
-        canSlowDownFromPlatform = true;
-    }, 1000);
-}
+
 

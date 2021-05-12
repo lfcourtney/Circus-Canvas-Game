@@ -5,7 +5,6 @@ function playerRespawns() {
         endGame();
         return;
     }
-    seeSawCanCollide = true;
     numOfCollisions = 0;
     livesText.textContent = lives;
     //Handle player respawn
@@ -26,7 +25,6 @@ function endGame() {
 function restartGame(){
     balloonStore = [];
     loadBalloons();
-    seeSawCanCollide = true;
     numOfCollisions = 0;
     score = 0;
     lives = 3;
@@ -42,7 +40,6 @@ function restartGame(){
 function newLevel() {
     balloonStore = [];
     loadBalloons();
-    seeSawCanCollide = true;
     numOfCollisions = 0;
     p1Cord = spawnPlayer();
     person1 = new Person(p1Cord.x, p1Cord.y, p1Cord.flipped, "WALK");
@@ -58,6 +55,7 @@ function checkToSeeIfAllBallsAreCleared() {
             cancelAnimationFrame(animationId);
             setTimeout(() => {
                 newLevel();
+                animationId = requestAnimationFrame(animate);
             }, 2000);
         }
     }, 10);

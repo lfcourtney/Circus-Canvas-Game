@@ -1,7 +1,7 @@
 //We either start the game or restart the game when the user clicks on the button
 menuBtn.addEventListener("click", e => {
     gameMenu.style.display = "none";
-    if(canStartGame & lives > 0){
+    if(canStartGame && lives > 0){
         loadBalloons();
         animate();
         //Initialise mousePos. User may have clicked the button without moving the mouse
@@ -16,16 +16,13 @@ menuBtn.addEventListener("click", e => {
 });
 
 //so the 'animate' function will only be called when all images have been successfully loaded.
-function loadSprites() {
+(function loadSprites() {
     blueBalloon.onload = loadAssets;
     greenBalloon.onload = loadAssets;
     yellowBalloon.onload = loadAssets;
     //Player Sprites
     spriteSheet.onload = loadAssets;
-}
-
-//The only function to get called on initial document load
-loadSprites();
+})();
 
 
 //Temporarily alter the velocity on the first few jumps depending on what platform the player spawned on. This is to make the game feel better
@@ -57,7 +54,7 @@ function animate() {
     animationId = requestAnimationFrame(animate);
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    //See how much mouse has moved over the past 5 frames
+    //See how much mouse has moved over the past 15 frames
     if(frameCount >= 15 && mousePos){
         frameCount = 0;
         velocityXDiff = (mousePos.x - prevMouseXPos) / 4;
@@ -84,8 +81,7 @@ function animate() {
         }
 
         //See if person has hit seeSaw when they are far down enough
-        if(mousePos && (person.y + person.height) > 597 && seeSawCanCollide){
-            seeSawCanCollide = false;
+        if(mousePos && (person.y + person.height) > 597 && person.velocityY < 0){
             let hasPlayerHit = playerHitSeeSaw(person);
             if(!hasPlayerHit){
                 person.state = "FAIL";
@@ -122,9 +118,6 @@ function animate() {
                     personJump.startJump = true;
                     //Increment seeSaw collisions
                     numOfCollisions++;
-                    setTimeout(() => {
-                        seeSawCanCollide = true;
-                    }, 300);
             }   
         }
 

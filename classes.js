@@ -78,7 +78,7 @@ class Person {
         ctx.translate(midX,midY);
         ctx.rotate(this.spinNum * Math.PI / 180);
         ctx.translate(-midX,-midY);
-        if(this.frameWait >= 10) this.spinNum += 90; //Increment. Make it 11 so that rotation can only happen on new sprite.
+        if(this.frameWait >= 10) this.spinNum += 90; //Increment. Make it so that rotation can only happen on new sprite.
         if(this.spinNum > 270) this.spinNum = 0;
     }
 
@@ -86,7 +86,7 @@ class Person {
         let spriteNum = this.spriteFrame % 4; //Modulus is 4 because that is the number of sprites in jump animation
         this.sprite = flySprites[spriteNum];
         if(!this.shouldSpin){
-            if(this.startJump || this.y > 350) this.sprite = flySprites[0]; //Show the sprite on first 10 frames & when player is coming down
+            if( this.y > 350) this.sprite = flySprites[0]; //Show the sprite on first 10 frames & when player is coming down
         }
         this.frameWait++;
         //Do Velocity Stuff
@@ -154,54 +154,34 @@ let person2 = new Person(200,200,1,"STAND");
 let people = [person1, person2];
 
 class Balloon {
-    constructor(x, y, dx, image) {
+    constructor(x, y, dir, dx, image) {
         this.x = x;
         this.y = y;
+        this.dir = dir;
         this.dx = dx;
         this.image = image;
         this.width = 22;
         this.height = 30;
     }
 
+    restartCycle() {
+        switch(this.dir){
+            case "left":
+                if((this.x + this.width) < 0){
+                    this.x = (canvas.width);
+                }
+                break;
+            case "right":
+                if(this.x > canvas.width){
+                    this.x = -(this.width);
+                }
+                break;
+        }
+    }
+
     draw() {
         this.x += this.dx;
         ctx.drawImage(this.image,this.x,this.y,this.width,this.height);
-    }
-}
-
-class BlueBalloon extends Balloon {
-    constructor(x, y){
-        super(x, y, -1, blueBalloon);
-    }
-    //Based on left edge of canvas
-    restartCycle(){
-        if((this.x + this.width) < 0){
-            this.x = (canvas.width);
-        }
-    }
-}
-
-class GreenBalloon extends Balloon {
-    constructor(x, y){
-        super(x, y, 1.2, greenBalloon);
-    }
-    //Based on right edge of canvas
-    restartCycle(){
-        if(this.x > canvas.width){
-            this.x = -(this.width);
-        }
-    }
-}
-
-class YellowBalloon extends Balloon {
-    constructor(x, y){
-        super(x, y, -1, yellowBalloon);
-    }
-    //Based on left side of canvas
-    restartCycle(){
-        if((this.x + this.width) < 0){
-            this.x = (canvas.width);
-        }
     }
 }
 
@@ -219,11 +199,11 @@ function loadBalloons() {
             ballPos = 5;
         }
         if(i < 16){
-            balloonStore.push(new BlueBalloon(ballPos, 5));
+            balloonStore.push(new Balloon(ballPos, 5 , "left", -1, blueBalloon));
         }else if(i > 15 && i < 32){
-            balloonStore.push(new GreenBalloon(ballPos, 45));
+            balloonStore.push(new Balloon(ballPos, 45, "right", 1.2, greenBalloon));
         }else if(i > 31){
-            balloonStore.push(new YellowBalloon(ballPos, 85));
+            balloonStore.push(new Balloon(ballPos, 85, "left", -1, yellowBalloon));
         }
         
         ballPos += 39;

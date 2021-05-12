@@ -9,7 +9,6 @@ let livesText = document.getElementById("lives-text");
 //Global Vars
 let canStartGame = false;
 let mousePos = null;
-let seeSawCanCollide = true; //seeSaw collision cooldown Boolean
 let gravity = 0.4;
 let friction = 0.008;
 //The next 3 Booleans relate to changing the paddles X velocity based on the mouse positioning
@@ -27,7 +26,6 @@ let animationId = null;
 canvas.addEventListener("mousemove", e => {
     mousePos = {
         x: e.clientX - canvas.offsetLeft,
-        y: (e.clientY - canvas.offsetTop) + scrollY
     }
     
 });
